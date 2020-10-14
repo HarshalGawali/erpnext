@@ -1,0 +1,28 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2019-11-28 13:54:34.997576",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 0,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "sdsdsd\n\n",
+ "modified": "2019-11-28 13:56:42.646822",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "New Commnet ---",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com"
+  }
+ ],
+ "sender": "Erpadmin",
+ "sender_email": "ERPadmin@ibntech.com",
+ "subject": "New Lead Commnet:{{doc.reference_name}} "
+}

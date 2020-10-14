@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status==\"Open\" or doc.status==\"Lead\"",
+ "creation": "2020-03-03 15:46:44.418936",
+ "date_changed": "contact_date",
+ "days_in_advance": 1,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Lead",
+ "enabled": 0,
+ "event": "Days After",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"Lead Overdue Follow-up Reminder :\")}}</h3>\n<p>Lead ID: {{ doc.name }}</p>\n<p>Organization Name: {{ doc.company_name }}</p>\n<p>Status: {{ doc.status }}</p>\n<p>Contact date: {{ doc.contact_date }}</p>\n<p>Contact By: {{ doc.next_contact }}</p>\n<P>Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}<P>",
+ "modified": "2020-03-24 17:34:37.670760",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Second Lead Overdue Followups reminder",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "sales09@ibntech.com",
+ "sender_email": "sales09@ibntech.com",
+ "subject": "Second Lead Overdue Followups : {{ doc.name }} Contact Date : {{ doc.contact_date }}"
+}

@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "( doc.contact_date < nowdate() ) and doc.status==\"Open\" or doc.status==\"Quotation\" or doc.status==\"replied\" \n",
+ "creation": "2020-03-03 15:49:52.607511",
+ "date_changed": "contact_date",
+ "days_in_advance": 30,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Opportunity",
+ "enabled": 1,
+ "event": "Days After",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"Opportunity Follow up has been Overdued :\")}}</h3>\n<p>Organization Name: {{ doc.title }}</p>\n<p>Opportunity ID : {{ doc.name }}</p>\n<p>Contact date: {{ doc.contact_date }}</p>\n<p>Contact By: {{ doc.contact_by }}</p>\n<P>Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}",
+ "modified": "2020-03-24 18:08:58.030111",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Third reminder Opportunity Followup has been Overdued",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "sales09@ibntech.com",
+ "sender_email": "sales09@ibntech.com",
+ "subject": "Reminder Opportunity Followup has been Overdued : {{ doc.title }} {{ doc.name }}"
+}

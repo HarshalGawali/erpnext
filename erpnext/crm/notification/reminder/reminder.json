@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "creation": "2019-09-10 17:46:42.911745",
+ "date_changed": "contact_date",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Lead",
+ "enabled": 0,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"New Lead\")}}</h3>\n\n{% set d = frappe.get_doc(\"Lead\",doc.lead) %}\n<p>Organization Name: {{ doc.company_name }}</p>\n<p>Email Address: {{ d.email_id }}</p>\n<p>Next Contact By: {{ d.contact_by }}</p>\n<p>Next Contact date: {{ d.contact_date }}</p>",
+ "modified": "2019-09-10 18:29:22.992841",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "reminder",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com\r\n",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "cloud.support@cloudibn.com",
+ "sender_email": "erpnext@mx4.ibnhost.net",
+ "subject": "Today's Follow-up Reminders : {{ doc.company_name}}"
+}

@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2019-11-02 18:14:12.864950",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Lead",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p> New Lead Assigned : </p>\n\n<p>Person Name: {{ doc.lead_name }}</p>\n<p>Referecne ID: {{ doc.name }}</p>\n<p>Organization Name: {{ doc.company_name }}</p>\n<p>Email Address: {{ doc.email_id }}</p>\n<p>Lead Owner: {{ doc.lead_owner }}</p>\n<p>Next Contact By: {{ doc.contact_by }}</p>\n\n<!-- show last comment -->\n{% if comments %}\nLast comment: {{ comments[-1].comment }} by {{ comments[-1].by }}\n{% endif %}",
+ "modified": "2019-11-02 18:15:29.769256",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "New Lead Assigned",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "cloud.support@cloudibn.com",
+ "sender_email": "erpnext@mx4.ibnhost.net",
+ "subject": "New Lead Assigned {{ doc.company_name }}",
+ "value_changed": "contact_by"
+}

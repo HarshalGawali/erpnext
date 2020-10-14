@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.reference_doctype==\"Opportunity\"",
+ "creation": "2019-11-27 17:25:39.429981",
+ "date_changed": "modified",
+ "days_in_advance": 3,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 0,
+ "event": "Days After",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3><p>No comments have been added to this opportunity since three days :</p></h3>\n<p>Refernce Doc : {{ doc.reference_doctype }}</p>\n{% set  d= frappe.get.doc(\"Opportunity\", doc.reference_name)%}\n<p>Organization Name: {{ d.customer_name}}\n<p>Reference Name : {{ doc.reference_name }}</p>\n<p>Comment By : {{ doc.comment_email }}</p>\n<p>Content : {{ doc.content }}</p>\n\n",
+ "modified": "2019-11-28 14:27:08.222981",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Opportunity Comment not added -",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "owner"
+  }
+ ],
+ "sender": "cloud.support@cloudibn.com",
+ "sender_email": "erpnext@mx4.ibnhost.net",
+ "subject": "Opportunity Comment not added : {{doc.reference_name}}"
+}

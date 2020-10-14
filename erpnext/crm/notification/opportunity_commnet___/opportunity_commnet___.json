@@ -1,0 +1,28 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.reference_doctype==\"Opportunity\"",
+ "creation": "2019-11-28 13:39:36.425267",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"New Opportunity Comment Addedd :\")}}</h3>\n<p>Refernce Doc : {{ doc.reference_doctype }}</p>\n{% set  ref_d= frappe.get.doc(\"Opportunity\", \"doc.reference_name\")%}\n<p>Organization Name: {{ ref_d.customer_name}}\n<p>Reference Name : {{ doc.reference_name }}</p>\n<p>Comment By : {{ doc.comment_email }}</p>\n<p>Content : {{ doc.content }}</p>\n\n",
+ "modified": "2019-11-28 14:11:20.115248",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Opportunity Commnet --",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com"
+  }
+ ],
+ "sender": "Erpadmin",
+ "sender_email": "ERPadmin@ibntech.com",
+ "subject": "Opportunity Commnet : {{doc.reference_name}}"
+}

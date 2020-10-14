@@ -1,0 +1,44 @@
+{
+ "add_total_row": 0,
+ "creation": "2020-02-06 15:35:24.344388",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Quotation New",
+ "modified": "2020-02-06 15:36:45.114080",
+ "modified_by": "Administrator",
+ "module": "Selling",
+ "name": "Sales Order Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select \n    `tabSales Order`.customer_name AS 'Customer Name:Link/Item:120', \n    `tabSales Order`.name as \"Name::120\",\n    `tabSales Order Item`.item_code as \"Item Code::120\",\n    `tabSales Order Item`.item_name as \"Item Name::120\",\n    `tabSales Order Item`.billing_cycle as \"Billing Cycle::120\",\n    `tabSales Order Item`.service_start_date as \"Service Start Date::120\",\n    `tabSales Order Item`.service_end as \"Service End Date::120\",\n    `tabSales Order Item`.next_inv_dt as \"Next INV DATE::120\",\n    `tabSales Order Item`.status as \"Status::120\" \nfrom \n`tabSales Order`\n    INNER JOIN `tabSales Order Item` \n    ON `tabSales Order`.name=`tabSales Order Item`.parent;",
+ "ref_doctype": "Sales Order",
+ "report_name": "Sales Order Report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Sales Manager"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Maintenance User"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Stock User"
+  },
+  {
+   "role": "Order Delivery User"
+  },
+  {
+   "role": "Order Process User"
+  }
+ ]
+}

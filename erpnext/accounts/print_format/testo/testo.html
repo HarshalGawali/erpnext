@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<style>
+@media print {
+	@page{
+		size: 50mm 50mm;
+	}
+}
+p.serif {
+  font-family: "Times New Roman", Times, serif;
+}
+@font-face {
+   font-family: myTimes;
+   src: url('/usr/local/share/fonts/Swiss-721-SWA_43263.ttf');
+}
+p.san {
+  font-family:  "Open Sans", "Fira Sans", "Lucida Sans", "Lucida Sans Unicode", "Trebuchet MS", "Liberation Sans", "Nimbus Sans L", sans-serif;
+}
+</style>
+<body>
+
+<p class="serif">Insert an image from MY folder: 1 C</p>
+<img src="/assets/erpnext/images/logo.png" alt="Stickman" width="24" height="39">
+
+<p class="san">Insert an image from MY folder: 1 C</p>
+<img src="https://www.w3schools.com/images/lamp.jpg" alt="Lamp" width="32" height="32">
+
+</body>
+</html>

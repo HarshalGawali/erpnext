@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.reference_doctype==\"Lead\" or doc.reference_doctype==\"Opportunity\" or doc.reference_doctype==\"Quotation\"",
+ "creation": "2019-12-04 11:51:56.582041",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<B>{{_(\"New Comment Addedd :\")}}</B>\nRefernce Doc : {{ doc.reference_doctype }}<br>\nReference Name : {{ doc.reference_name }}<br>\n{% set ref_doc = frappe.get_doc(doc.reference_doctype, doc.reference_name ) %}\n\n{% if doc.reference_doctype==\"Lead\" %}\n<p>Organization Name : {{ ref_doc.company_name }}<br>\n<p>Next Followup Date : {{ref_doc.contact_date }}<br>\n{% endif %}\n\n{% if doc.reference_doctype==\"Open\" %}\nOrganization Name : {{ ref_doc.company_name }}<br>\nNext Followup Date : {{ref_doc.contact_date }}<br>\n{% endif %}\n\n\n{% if doc.reference_doctype==\"Opportunity\" %}\nOrganization Name : {{ ref_doc.customer_name }}<br>\nNext Followup Date : {{ref_doc.contact_date }}<br>\n{% endif %}\n\n{% if doc.reference_doctype==\"Quotation\" %}\nOrganization Name : {{ ref_doc.customer_name }}<br>\nNext Followup Date : {{ref_doc.customer_name}} <br>\n{% endif %}\n\nComment By : {{ doc.comment_email }}<br>\nComment : {{ doc.content }}<br>\n",
+ "modified": "2020-07-09 10:56:16.844181",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "New Commnet",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "owner"
+  }
+ ],
+ "sender": "sales09@ibntech.com",
+ "sender_email": "sales09@ibntech.com",
+ "subject": "New Commnet:{{doc.reference_name}} "
+}

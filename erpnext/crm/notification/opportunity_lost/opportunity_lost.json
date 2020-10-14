@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status==\"lost\" or doc.status==\"closed\" \n",
+ "creation": "2019-11-18 14:57:28.700781",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Opportunity",
+ "enabled": 1,
+ "event": "Save",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"Opportunity Lost :\")}}</h3>\n<p></p>\n<p>Organization Name: {{ doc.title }}</p>\n<p>Lead ID : {{ doc.name }}</p>\n<p>Contact date: {{ doc.contact_date }}</p>\n<p>Contact By: {{ doc.contact_by }}</p>\n<p>Status: {{ doc.status }}</p>\n\n<P>Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}",
+ "modified": "2020-03-24 17:53:46.953335",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Opportunity Lost",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "sales09@ibntech.com",
+ "sender_email": "sales09@ibntech.com",
+ "subject": "Opportunity Lost : : {{ doc.title }} {{ doc.name }}",
+ "value_changed": ""
+}

@@ -1,0 +1,28 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2019-11-28 14:01:33.633297",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"New Comment Addedd :\")}}</h3>\n<p>Refernce Doc : {{ doc.reference_doctype }}</p>\n<p> Doctype:{{doc.doctype}}<p>\n<p>Reference Name : {{ doc.reference_name }}</p>\n<p>Comment By : {{ doc.comment_email }}</p>\n<p>Comment : {{ doc.content }}</p>\n\n",
+ "modified": "2019-11-28 14:38:31.293430",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "New Comments Added ------",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com"
+  }
+ ],
+ "sender": "Erpadmin",
+ "sender_email": "ERPadmin@ibntech.com",
+ "subject": "New Lead Commnet:{{doc.reference_name}} "
+}

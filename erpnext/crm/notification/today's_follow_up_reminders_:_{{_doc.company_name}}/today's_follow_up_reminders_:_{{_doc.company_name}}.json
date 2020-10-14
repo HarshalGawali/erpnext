@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status==\"Open\" or doc.status==\"Lead\" or doc.status==\"interested\" or doc.status==\"replied\" \n",
+ "creation": "2019-09-10 18:31:20.981090",
+ "date_changed": "contact_date",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Lead",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"Today's Followups :\")}}</h3>\n\n<p>Organization Name: {{ doc.company_name }}</p>\n<p>Reference Name : {{ doc.name }}</p>\n<p>Email Address: {{ doc.email_id }}</p>\n<p>Contact date: {{ doc.contact_date }}</p>\n<p>Contact By: {{ doc.next_contact }}</p>\n<P>Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}</p>\n",
+ "modified": "2020-03-24 17:06:29.174070",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Today's Follow-up Reminders : {{ doc.company_name}}",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "sales09@ibntech.com",
+ "sender_email": "sales09@ibntech.com",
+ "subject": "Today's Lead Follow-up Reminders : {{ doc.company_name}} : {{ doc.name }}"
+}

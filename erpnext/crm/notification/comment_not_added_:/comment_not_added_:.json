@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.reference_doctype==\"Lead\" or doc.reference_doctype==\"Opportunity\" or doc.reference_doctype==\"Quotation\" ",
+ "creation": "2019-12-03 12:47:28.042987",
+ "date_changed": "modified",
+ "days_in_advance": 3,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 1,
+ "event": "Days After",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3><p>No comments have been added to this prospect since three days :</p></h3>\n<p>Refernce Doc : {{ doc.reference_doctype }}</p>\n<p>Reference Name : {{ doc.reference_name }}</p>\n{% set ref_doc = frappe.get_doc(doc.reference_doctype, doc.reference_name ) %}\n\n{% if ref_doc.status!=\"Converted\" %}\n{% if ref_doc.status!=\"DisQualified\" %}\n{% if ref_doc.status!=\"Junk Lead\" %}\n{% if ref_doc.status!=\"Lost\" %}\n{% if ref_doc.status!=\"Close\" %}\n\n    {% if doc.reference_doctype==\"Lead\" %}\n        <p>Organization Name : {{ ref_doc.company_name }}</p>\n        <p>Next Followup Date : {{ref_doc.contact_date}}</p>\n    {% endif %}\n\n    {% if doc.reference_doctype==\"Open\" %}\n        <p>Organization Name : {{ ref_doc.company_name }}</p>\n        <p>Next Followup Date : {{ref_doc.contact_date}}</p>\n    {% endif %}\n\n\n    {% if doc.reference_doctype==\"Opportunity\" %}\n        <p>Organization Name : {{ ref_doc.customer_name }}</p>\n        <p>Next Followup Date : {{ref_doc.contact_date}}</p>\n    \n    {% endif %}\n\n    {% if doc.reference_doctype==\"Quotation\" %}\n        <p>Organization Name : {{ ref_doc.customer_name }}</p>\n    {% endif %}\n    \n<p>Comment By : {{ doc.comment_email }}</p>\n<p>Comment : {{ doc.content }}</p>\n\n{% endif %}\n{% endif %}\n{% endif %}\n{% endif %}\n{% endif %}\n",
+ "modified": "2019-12-03 12:47:28.042987",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Comment not added :",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "owner"
+  }
+ ],
+ "sender": "Erpadmin",
+ "sender_email": "ERPadmin@ibntech.com",
+ "subject": "Comment not added : {{doc.reference_name}}"
+}

@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status==\"Open\" or doc.status==\"Lead\"",
+ "creation": "2019-09-27 18:34:15.563166",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Lead",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"New Lead\")}}</h3>\n\n<p>Person Name: {{ doc.lead_name }}</p>\n<p>Organization Name: {{ doc.company_name }}</p>\n<p>Email Address: {{ doc.email_id }}</p>\n<p>Lead Owner: {{ doc.lead_owner }}</p>\n<p>Next Contact By: {{ doc.contact_by }}</p>",
+ "modified": "2019-12-04 17:52:11.711106",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "new lead",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "condition": "",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "Erpadmin",
+ "sender_email": "ERPadmin@ibntech.com",
+ "set_property_after_alert": "",
+ "subject": "New Lead Arrived: {{ doc.company_name}}",
+ "value_changed": "contact_by"
+}

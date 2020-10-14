@@ -1,0 +1,434 @@
+{
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2013-01-10 16:34:18",
+ "description": "Keep Track of Sales Campaigns. Keep track of Leads, Quotations, Sales Order etc from Campaigns to gauge Return on Investment. ",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "campaign",
+  "campaign_name",
+  "naming_series",
+  "from_date",
+  "column_break1",
+  "status",
+  "to_date",
+  "budget_section",
+  "currency",
+  "column_break2",
+  "budget",
+  "description_section",
+  "section_break_14",
+  "column_break_15",
+  "year",
+  "section_break_17",
+  "apr_budget",
+  "column_break_28",
+  "apr_spend",
+  "section_break_43",
+  "may_budget",
+  "column_break_32",
+  "may_spend",
+  "section_break_44",
+  "jun_budget",
+  "column_break_36",
+  "jun_spend",
+  "section_break_45",
+  "jul_budget",
+  "column_break_40",
+  "jul_spend",
+  "section_break_46",
+  "aug_budget",
+  "column_break_44",
+  "aug_spend",
+  "section_break_47",
+  "sep_budget",
+  "column_break_48",
+  "sep_spend",
+  "section_break_48",
+  "oct_budget",
+  "column_break_52",
+  "oct_spend",
+  "section_break_49",
+  "nov_budget",
+  "column_break_56",
+  "nov_spend",
+  "section_break_50",
+  "dec_budget",
+  "column_break_60",
+  "dec_spend",
+  "section_break_51",
+  "jan_budget",
+  "column_break_16",
+  "jan_spend",
+  "section_break_40",
+  "feb_budget",
+  "column_break_20",
+  "feb_spend",
+  "section_break_41",
+  "mar_budget",
+  "column_break_24",
+  "mar_spend",
+  "section_break_42",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "campaign",
+   "fieldtype": "Section Break",
+   "label": "Campaign",
+   "oldfieldtype": "Section Break"
+  },
+  {
+   "fieldname": "campaign_name",
+   "fieldtype": "Data",
+   "label": "Campaign Name",
+   "oldfieldname": "campaign_name",
+   "oldfieldtype": "Data",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "SAL-CAM-.YYYY.-",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Description",
+   "oldfieldname": "description",
+   "oldfieldtype": "Text",
+   "width": "300px"
+  },
+  {
+   "default": "Planned",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nPlanned\nIn Progress\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "fieldname": "column_break1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Currency",
+   "label": "Budget"
+  },
+  {
+   "fieldname": "description_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "column_break2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "budget_section",
+   "fieldtype": "Section Break",
+   "label": "BUDGET"
+  },
+  {
+   "fieldname": "jan_budget",
+   "fieldtype": "Data",
+   "label": "JAN Budget "
+  },
+  {
+   "fieldname": "jan_spend",
+   "fieldtype": "Data",
+   "label": "JAN Spend"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break",
+   "label": "Monthly Budget & Spend"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "feb_budget",
+   "fieldtype": "Data",
+   "label": "FEB Budget"
+  },
+  {
+   "fieldname": "feb_spend",
+   "fieldtype": "Data",
+   "label": "FEB Spend"
+  },
+  {
+   "fieldname": "mar_spend",
+   "fieldtype": "Data",
+   "label": "MAR Spend"
+  },
+  {
+   "fieldname": "mar_budget",
+   "fieldtype": "Data",
+   "label": "MAR Budget"
+  },
+  {
+   "fieldname": "apr_spend",
+   "fieldtype": "Data",
+   "label": "APR Spend"
+  },
+  {
+   "fieldname": "apr_budget",
+   "fieldtype": "Data",
+   "label": "APR Budget"
+  },
+  {
+   "fieldname": "may_spend",
+   "fieldtype": "Data",
+   "label": "MAY Spend"
+  },
+  {
+   "fieldname": "may_budget",
+   "fieldtype": "Data",
+   "label": "MAY Budget"
+  },
+  {
+   "fieldname": "jun_spend",
+   "fieldtype": "Data",
+   "label": "JUN Spend"
+  },
+  {
+   "fieldname": "jun_budget",
+   "fieldtype": "Data",
+   "label": "JUN Budget"
+  },
+  {
+   "fieldname": "jul_spend",
+   "fieldtype": "Data",
+   "label": "JUL Spend"
+  },
+  {
+   "fieldname": "jul_budget",
+   "fieldtype": "Data",
+   "label": "JUL Budget"
+  },
+  {
+   "fieldname": "aug_spend",
+   "fieldtype": "Data",
+   "label": "Aug Spend"
+  },
+  {
+   "fieldname": "aug_budget",
+   "fieldtype": "Data",
+   "label": "Aug Budget"
+  },
+  {
+   "fieldname": "sep_spend",
+   "fieldtype": "Data",
+   "label": "SEP Spend"
+  },
+  {
+   "fieldname": "sep_budget",
+   "fieldtype": "Data",
+   "label": "SEP Budget"
+  },
+  {
+   "fieldname": "oct_spend",
+   "fieldtype": "Data",
+   "label": "OCT Spend"
+  },
+  {
+   "fieldname": "oct_budget",
+   "fieldtype": "Data",
+   "label": "OCT Budget"
+  },
+  {
+   "fieldname": "nov_spend",
+   "fieldtype": "Data",
+   "label": "NOV Spend"
+  },
+  {
+   "fieldname": "nov_budget",
+   "fieldtype": "Data",
+   "label": "NOV Budget"
+  },
+  {
+   "fieldname": "dec_spend",
+   "fieldtype": "Data",
+   "label": "DEC Spend"
+  },
+  {
+   "fieldname": "dec_budget",
+   "fieldtype": "Data",
+   "label": "DEC Budget"
+  },
+  {
+   "fieldname": "section_break_40",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_41",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_42",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_43",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_44",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_45",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_46",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_47",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_48",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_49",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_50",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_51",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_36",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_40",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_44",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_48",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_52",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_56",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_60",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Select",
+   "label": "Year",
+   "options": "2019\n2020\n2021\n2022\n2023\n2024\n2025\n2026\n2027\n2028\n2029\n2030\n2031\n2032\n2033\n2034\n2035\n2036\n2037\n2038\n2039\n2040\n2041\n2042\n2043\n2044\n2045\n2046\n2047\n2048\n2049\n2050"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "icon": "fa fa-bullhorn",
+ "idx": 1,
+ "modified": "2020-10-03 19:19:41.975703",
+ "modified_by": "suren@ibntech.com",
+ "module": "Selling",
+ "name": "Campaign",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "set_user_permissions": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Master Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

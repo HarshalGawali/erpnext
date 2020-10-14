@@ -1,0 +1,209 @@
+
+# -*- coding: utf-8 -*-
+# Copyright (c) 2019, Frappe Technologies Pvt. Ltd. and contributors
+# For license information, please see license.txt
+
+from __future__ import unicode_literals
+import frappe
+from frappe import _
+from frappe import _, msgprint, scrub
+from datetime import datetime,timedelta
+from datetime import datetime
+import time
+from time import strftime
+from frappe.utils import fmt_money, formatdate, format_time, now_datetime, get_url_to_form, get_url_to_list, flt, get_link_to_report
+from frappe.utils.data import nowdate, getdate, cint, add_days, date_diff, get_last_day, add_to_date, flt
+from frappe.utils import time_diff
+from frappe.utils import time_diff_in_hours
+
+from frappe.model.document import Document
+
+class BiometricAttendance(Document):
+	pass
+
+def fetch_date(dt = nowdate()):
+	presentday = datetime.now()
+	yesterday = presentday - timedelta(1)
+	print("Yesterday = ", yesterday.strftime('%d-%m-%Y'))
+	mdate = datetime.strftime(datetime.now() - timedelta(days=2), '%Y-%m-%d')
+
+	print("NOWDATEEEEEEEEEEEEEEEEEEEEEEEEE",mdate)
+	return mdate
+
+def scheduler_method():
+	date = fetch_date()
+	print("SCHEDULERRRRRRRRRRRRRRRRRRRRRRR method biometric",date)
+	get_date(date)
+
+@frappe.whitelist()
+def get_date(date):
+
+	lst=[]
+	plist=[]
+	rlist = []
+	vlist=[]
+	nlist=[]
+	dlist=[]
+	mydate = date
+	nxt_date = add_days(mydate, 1) 
+	d1=frappe.db.sql(""" 
+		Select name,start_time,end_time from `tabShift Type`""",as_dict=1) #fetch data from SHIFT MASTER
+
+	for i in d1:
+		r = i["end_time"]
+		p = i["start_time"]
+		add = r + timedelta(hours=2)
+		sub = p - timedelta(hours=4)
+		lst.append(i)
+
+	d1=frappe.db.sql(""" SELECT t1.name, t1.start_time, t1.end_time,t2.date, t2.employee
+			FROM `tabShift Type` t1
+			INNER JOIN `tabShift Assignment` t2
+			ON t1.name = t2.shift_type
+			INNER JOIN `tabEmployee` t3
+			ON t2.employee = t3.name
+			where t2.docstatus=1 and t3.status='Active' and t3.date_of_joining < '%s'
+		"""% mydate,as_dict=1)	#FETCH DATA FROM SHIFT MASTER AND SHIFT ASSIGNMENT 
+	for r in d1:
+		print("LISTTTT",r)
+
+	for u in d1:
+		# print("^^^^^^^^^^^^^^^^^^^^^^^",u["employee"])
+		strt = mydate + u["start_time"]
+		print("strt",)
+		start = u["start_time"] - timedelta(hours=2)	#TWO HOUR BEFORE START TIME 
+		end = u["end_time"] + timedelta(hours=4)		#TWO HOUR AFTER END TIME
+		start_time = str(start)
+		end_t = str(end)
+		end_time = end_t[-8:]
+		if start<end:
+			print("start",strt)
+			print("end",end_time)
+		print("::::::::::::::::::",start_time,end_time)
+		user=u["employee"]
+		print("nxt_date",nxt_date)
+		if start<end:		#FOR NIGHT SHIFT
+			print("///////////////",user)
+			kt = frappe.db.sql("""(select LogDate,DATE(LogDate) from biometric where UserId='%s' and LogDate between CONCAT(subdate('%s',1), ' ', '%s') and CONCAT('%s', ' ', '%s') order by LogDate asc limit 1) union (select CONCAT(subdate('%s',1), ' ', '%s') as LogDate,subdate('%s',1) as 'DATE(LogDate)'limit 1) limit 1"""%(u['employee'],nxt_date,start_time,nxt_date,end_time,nxt_date,start_time,nxt_date),as_dict=1)		#FETCH FIRST PUNCH OF EACH EMPLOYEE
+			jk = frappe.db.sql("""(select LogDate,DATE(LogDate) from biometric where UserId='%s' and LogDate between subdate(CONCAT('%s', ' ', '%s'),1) and CONCAT('%s',' ', '%s') order by LogDate desc limit 1) union (select LogDate,DATE(LogDate) from biometric where DATE(LogDate)=subdate('%s',1) and UserId='%s' and TIME(LogDate) between '%s' and '23:59:59' order by LogDate desc limit 1) union (select  CONCAT(subdate('%s',1), ' ', '%s') as LogDate,'%s' as 'DATE(LogDate)' limit 1) limit 1"""%(u['employee'],nxt_date,start_time,nxt_date,end_time,nxt_date,u['employee'],start_time,nxt_date,start_time,nxt_date),as_dict=1) 	#FETCH LAST PUNCH OF EACH EMPLOYEE
+			
+			# jk = frappe.db.sql("""select LogDate,DATE(LogDate) from biometric where LogDate between subdate(CONCAT(subdate(%s,1), ' ', %s),1) and CONCAT(subdate(%s,1), ' ', %s) order by LogDate desc limit 1""",(nxt_date,start_time,nxt_date,end_time),as_dict=1)		#FETCH LAST PUNCH OF EACH EMPLOYEE
+
+			# for k in kt:		#LIST OF FIRST PUNCHES
+			# 	print("-------------------Night SHift---------------------")
+			# 	print("33333333333333333333333333",u["employee"],u["name"],k["LogDate"])
+			# 	t1 = k["LogDate"]
+			# 	nlist.append(k)	
+		
+			# for j in jk:		#LIST OF LAST PUNCHES
+			# 	# print("22222222",u["employee"],u["name"],j["LogDate"])
+			# 	t2 = j["LogDate"]
+			# 	vlist.append(j)
+				# print("jjjjjjjjjjjj",j)
+				
+			for k,j in zip(kt,jk):		#MERGE TWO LIST 
+				print("-------------------Night SHift---------------------")
+				print("kkkkkk",k)
+				print("jjjjjj",j)
+				t1 = k["LogDate"]
+				t2 = j["LogDate"]
+				diff = abs(round(time_diff_in_hours(t2, t1),1))		#DIFFERENCE BETWEEN LIST 1 AND LIST 2
+				if diff<4.5:
+					status="Absent"
+				elif(diff>4.5 and diff<7):
+					status="Half Day"
+					# print("OOOOOOOOOOOOOOOOOOOOOOO")
+				elif diff>7:
+					status = "Present"
+				p = user,user,k["DATE(LogDate)"],u["name"],diff,status,t1,t2
+				# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",p)
+				dlist.append(p)
+				print(diff)
+
+		else:					#FOR OTHER SHIFT
+			dt = frappe.db.sql("""(select UserId,LogDate,DATE(LogDate) from biometric where DATE(LogDate)='%s' and UserId='%s' and TIME(LogDate) between '%s' and '%s' order by LogDate desc limit 1) union (select '%s' as UserId,  CONCAT('%s',' ', '%s')  as LogDate,'%s' as 'DATE(LogDate)') limit 1"""%(mydate,u['employee'],start_time,end_time,u['employee'],mydate,start_time,mydate),as_dict=1)	 #FETCH FIRST PUNCH OF EMPLOYEE
+			rt = frappe.db.sql("""(select UserId,LogDate,DATE(LogDate) from biometric where DATE(LogDate)='%s' and UserId='%s' and TIME(LogDate) between '%s' and '%s' order by LogDate asc limit 1) union (select '%s' as UserId, CONCAT('%s',' ', '%s')  as LogDate,'%s' as 'DATE(LogDate)') limit 1"""%(mydate,u['employee'],start_time,end_time,u['employee'],mydate,start_time,mydate),as_dict=1) 	#FETCH LAST PUNCH OF EMPLOYEE
+			for r,o in zip(rt,dt):		#MERGE TWO LIST 
+				print("-------------------Day SHift---------------------")
+				print("rrrrrr",r)
+				print("oooooo",o)
+				t1 = r["LogDate"]
+				t2 = o["LogDate"]
+				diff = abs(round(time_diff_in_hours(t2, t1),1))	#DIFFERENCE BETWEEN LIST 1 AND LIST 2
+				if diff<4.5:
+					status="Absent"
+				elif(diff>4.5 and diff<7):
+					status="Half Day"
+					# print("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+				elif diff>7:
+					status = "Present"
+
+				p = user,user,r["DATE(LogDate)"],u["name"],diff,status,t1,t2
+				# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",p)
+				dlist.append(p)
+				print(diff)
+	
+	# print("iiiiiiiiiiiiiiiiiii",nlist)
+	# print("jjjjjjjjjjjjjjjjjjjj",vlist)
+	# print("kkkkkkkkkkkkkkkkkk",dlist)
+	
+	for i in dlist:
+		# frappe.db.sql("""Insert into `tabAttendance`(name,employee,attendance_date,naming_series,shift,working_hours) values(%s,%s,%s,"HR-ATT-.YYYY.-",%s,%s)""",i,as_dict=1)		#INSERT INTO `tabAttendance` TABLE
+		# print("00000000000000000000000",i)
+		# payment_entry.stock_entry_type= 'Material Issue'
+		get_doc(i)
+		print("**********************************")
+		insert(i)
+			
+	return
+
+def get_doc(i):
+	# print("&&&&&&&&&&&&&&&&&&&&&&&&",i)
+	attendance = frappe.new_doc("Attendance")
+	
+	d2=frappe.db.sql(""" SELECT count(t2.holiday_date)
+		FROM `tabEmployee` t1
+		INNER JOIN `tabHoliday` t2
+		ON t1.holiday_list = t2.parent
+		where t1.employee='%s'
+		and t2.holiday_date='%s'
+	"""%(i[0],i[2]),as_list=1)
+
+	for t in d2:
+		print("YSYSYSYSY",t[0])
+		if(t[0] == 0):
+			if not frappe.db.exists('Attendance', {'employee':i[0], 'attendance_date':i[2], 'docstatus':('!=', '2')}):
+				attendance.attendance_date = i[2]
+				attendance.shift = i[3]
+				attendance.employee = i[0]
+				attendance.working_hours=i[4]
+				attendance.status=i[5]
+				print("**********************************")
+				attendance.save()
+		elif(t[0] == 1):
+			if(i[4] != "0.0"):
+				print("i[6]",i[6])
+				print("i[7]",i[7])
+				if not frappe.db.exists('Attendance', {'employee':i[0], 'attendance_date':i[2], 'docstatus':('!=', '2')}):
+					attendance.attendance_date = i[2]
+					attendance.shift = i[3]
+					attendance.employee = i[0]
+					attendance.working_hours=i[4]
+					attendance.status=i[5]
+					print("++++++++++++++++++++")
+					attendance.save()
+					print("HELLO")
+			else:
+				print("-------------------")
+		else:
+			print("BYE")
+			pass
+
+	return attendance
+
+def insert(i):
+	print("????????????????????????",i)
+	frappe.db.sql("""update `tabAttendance` set punch_in='%s',punch_out='%s' where employee='%s' and attendance_date='%s'"""%(i[6],i[7],i[0],i[2]),as_dict=1)
+
+	print("PUNCH IN",i[6])
+	print("PUNCH OUT",i[7])

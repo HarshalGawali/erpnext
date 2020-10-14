@@ -1,0 +1,37 @@
+{
+ "add_total_row": 0,
+ "creation": "2020-05-30 13:18:28.983742",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Quotation New",
+ "modified": "2020-05-30 13:18:28.983742",
+ "modified_by": "Administrator",
+ "module": "CRM",
+ "name": "Sales Person Wise Lead Count Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Lead",
+ "report_name": "Sales Person Wise Lead Count Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Sales Manager"
+  },
+  {
+   "role": "Marketing Manager"
+  },
+  {
+   "role": "Marketing User"
+  }
+ ]
+}

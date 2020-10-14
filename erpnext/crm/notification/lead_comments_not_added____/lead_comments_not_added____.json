@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.reference_doctype==\"Lead\" or doc.reference_doctype==\"Opportunity\" or doc.reference_doctype==\"Quotation\" ",
+ "creation": "2019-11-28 18:44:33.803986",
+ "date_changed": "modified",
+ "days_in_advance": 3,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Comment",
+ "enabled": 0,
+ "event": "Days After",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"No comments have been added to this lead since three days : :\")}}</h3>\n<p>Refernce Doc : {{ doc.reference_doctype }}</p>\n<p> Doctype:{{doc.doctype}}<p>\n<p>Reference Name : {{ doc.reference_name }}</p>\n{% set ref_doc = frappe.get_doc(doc.reference_doctype, doc.reference_name ) %}\n\n{% if doc.reference_doctype==\"Lead\" %}\n<p>Organization Name : {{ ref_doc.company_name }}</p>\n{% endif %}\n\n{% if doc.reference_doctype==\"Opportunity\" %}\n<p>Organization Name : {{ ref_doc.customer_name }}</p>\n{% endif %}\n\n{% if doc.reference_doctype==\"Quotation\" %}\n<p>Organization Name : {{ ref_doc.customer_name }}</p>\n{% endif %}\n\n<p>Comment By : {{ doc.comment_email }}</p>\n<p>Comment : {{ doc.content }}</p>\n",
+ "modified": "2019-11-28 18:45:09.602791",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "Lead Comments not added ---",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com",
+   "email_by_document_field": "owner"
+  }
+ ],
+ "sender": "cloud.support@cloudibn.com",
+ "sender_email": "erpnext@mx4.ibnhost.net",
+ "subject": "Lead Comments not added :{{doc.reference_name}}"
+}

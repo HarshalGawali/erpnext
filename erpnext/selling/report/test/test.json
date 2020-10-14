@@ -1,0 +1,44 @@
+{
+ "add_total_row": 0,
+ "creation": "2020-07-17 14:30:08.146588",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Quotation New",
+ "modified": "2020-09-09 11:36:02.872514",
+ "modified_by": "Administrator",
+ "module": "Selling",
+ "name": "test",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select * from `tabSales Order Item`;",
+ "ref_doctype": "Sales Order",
+ "report_name": "test",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Sales Manager"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Maintenance User"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Stock User"
+  },
+  {
+   "role": "Order Delivery User"
+  },
+  {
+   "role": "Order Process User"
+  }
+ ]
+}

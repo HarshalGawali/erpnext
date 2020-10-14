@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status==\"Open\" or doc.status==\"Lead\"",
+ "creation": "2020-03-24 17:47:43.046925",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Lead",
+ "enabled": 1,
+ "event": "Save",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"New Lead\")}}</h3><br>\n\nLead Created On : {{ doc.creation }}<br>\nPerson Name: {{ doc.lead_name }}<br>\nOrganization Name: {{ doc.company_name }}<br>\nEmail Address: {{ doc.email_id }}<br>\nLead Owner: {{ doc.lead_owner }}<br>\nNext Contact By: {{ doc.contact_by }}<br>\nLead Source : {{ doc.source }}<br>\nlead Source URL : {{ doc.lead_source_url}}<br>\nB.U : {{ doc.business_unit }}<br>\nLast comment: {{ doc.notes }}<br>\nModified ON: {{ doc.modified }}<br>\nENds On: {{ doc.ends_on }}<br>\n",
+ "modified": "2020-07-06 13:10:23.400622",
+ "modified_by": "suren@ibntech.com",
+ "module": "CRM",
+ "name": "New Lead Assigned ::",
+ "owner": "suren@ibntech.com",
+ "recipients": [
+  {
+   "cc": "suren@ibntech.com\nSwanand.Khadke@ibntech.com",
+   "condition": "",
+   "email_by_document_field": "contact_by"
+  }
+ ],
+ "sender": "sales09@ibntech.com",
+ "sender_email": "sales09@ibntech.com",
+ "set_property_after_alert": "",
+ "subject": "New Lead Assigned: {{ doc.company_name}} B.U : {{ doc.business_unit }}",
+ "value_changed": "contact_by"
+}
